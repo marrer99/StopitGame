@@ -61,6 +61,11 @@ app.get('/Accounts', function(request, response) {
   response.send(accounts);
 })
 
+app.get('/DeployContract', function(request, response) {
+  contract = {"contractAddress":"0x1D5d4889B7bBF9882Df9314D9Bfd280E7c4ba65C"};
+  console.log(contract);
+  response.send(contract);
+})
 app.listen(app.get('port'), function() {
   console.log("Node app is running at localhost:" + app.get('port'))
 })
