@@ -99,8 +99,7 @@ function resetGame() {
     innerball.setRadius(ballRadius);
     score = 0;
     ResetPoints();
-    message = 'GAME OVER';
-    this.showScore(message);
+    this.showScore('GAME OVER');
     this.sc = 0;
     //document.getElementById('points').innerHTML = "<b>" + message + "</b>";
 }

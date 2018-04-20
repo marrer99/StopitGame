@@ -44,7 +44,11 @@ var playerscore = playerscoreContract.new(
     }
  })}
     getContract(account){
-        var playerscoreContract = web3.eth.contract([{"constant":false,"inputs":[],"name":"resetScore","outputs":[],"payable":false,"stateMutability":"nonpayable","type":"function"},{"constant":false,"inputs":[{"name":"points","type":"int256"}],"name":"addPoints","outputs":[],"payable":false,"stateMutability":"nonpayable","type":"function"},{"constant":true,"inputs":[],"name":"getPoints","outputs":[{"name":"","type":"int256"}],"payable":false,"stateMutability":"view","type":"function"}]);
+        var playerscoreContract = web3.eth.contract(
+            [{"constant":false,"inputs":[],"name":"resetScore","outputs":[],"payable":false,"stateMutability":"nonpayable","type":"function"}
+            ,{"constant":false,"inputs":[{"name":"points","type":"int256"}],"name":"addPoints","outputs":[],"payable":false,"stateMutability":"nonpayable","type":"function"}
+            ,{"constant":true,"inputs":[],"name":"getPoints","outputs":[{"name":"","type":"int256"}],"payable":false,"stateMutability":"view","type":"function"}
+            ]);
         // var playerscore = playerscoreContract.new(
         //     {
         //         from: web3.eth.accounts[0], 

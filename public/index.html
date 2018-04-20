@@ -5,21 +5,29 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>Page Title</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" type="text/css" media="screen" href="main.css" />
+    <link rel="stylesheet" type="text/css" href="../main.css" />
     <script src="sketch.js"></script>
     <script src="ball.js"></script>
     <script src="box.js"></script>
     <script src="Ether.js"></script>
+    <script src="../main.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.6.0/p5.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.6.0/addons/p5.dom.min.js"></script>
 </head>
 <body>
-    <b>Accounts: </b>
-        <select onselect="(sender, event) => {window.alert('selected');}">
-                <option value="1">Account1</option>
-                <option value="2">Account2</option>
-            </select>
-    <label id='points'></label>
-    <div></div>
+    <div id="EtherData">
+        Contract:<input id="contract" style="width:275px" value="12001240120120412041204"/> 
+        <input id="btnDeploy" type="button" value="Deploy" onclick="getContract()"/>
+        <br/>
+        <b>Accounts</b><select id='accounts'></select>
+     <!-- <label id='points'></label> -->
+    </div>
+    <div id='canvas'></div>
+<script>
+function getContract (e) {
+        var url = '/DeployContract';
+        result = loadJSON(url ,{},"json",function(contractData) { document.getElementById('contract').value = contractData.contractAddress;} ,function(jsresponse) {console.log("error : " + jsresponse)});
+    }   
+</script>
 </body>
 </html>
