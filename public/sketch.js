@@ -37,8 +37,8 @@ function showScore(score) {
 }
 
 function keyPressed() {
-    if(keyCode === LEFT_ARROW) growthfactor = 0.01;
-    else if(keyCode === RIGHT_ARROW) growthfactor = -0.01 
+    if(keyCode === UP_ARROW) growthfactor = 0.01;
+    else if(keyCode === DOWN_ARROW) growthfactor = -0.01 
     else if (keyCode === 32 ) {growthfactor = 0;acceleration*=2;updatePoints();} 
 }
 
@@ -63,18 +63,16 @@ function updatePoints() {
 }
 
 function getPoints(points) {
-    var url = '/points/?points=' + String(points);
+    var url = '/points/?points=' + String(points) + '&account=' + document.getElementById('accounts').value;
     result = loadJSON(url ,{},"json",showPoints,function(jsresponse) {console.log("error : " + jsresponse)});
 }
 
 function ResetPoints() {
-    var url = '/resetPoints';
+    var url = '/resetPoints/?account='+ document.getElementById('accounts').value;
     result = loadJSON(url ,{},"json",showPoints,function(jsresponse) {console.log("error : " + jsresponse)});
 }
 function showPoints(jsonPoints) {
     console.log('coming back ...' +jsonPoints.TotalPoints );
-    //message = 'POINTS: ' + jsonPoints.TotalPoints;
-    //document.getElementById('points').innerHTML = "<b>" + message + "</b>";
     this.score = jsonPoints.TotalPoints;
 }
 
@@ -99,9 +97,9 @@ function resetGame() {
     innerball.setRadius(ballRadius);
     score = 0;
     ResetPoints();
+    getPoints(points)
     this.showScore('GAME OVER');
     this.sc = 0;
-    //document.getElementById('points').innerHTML = "<b>" + message + "</b>";
 }
 
 

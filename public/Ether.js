@@ -5,31 +5,39 @@ class Ether {
         this.points = 0;
         this.contract = '';
     }
+    getAccount() {
+        var acc = {from: ''};
+        acc.from = this.account
+        return acc;
+    }
+
     setContract(contract) {
         this.contract = contract;
     }
     getPoints() {
         //contract = 
-        this.getContract(web3.eth.accounts[0]);
-        this.points = this.contract.getPoints().toNumber();
+        this.getContract(this.account);
+        this.points = this.contract.getPoints(this.getAccount()).toNumber();
         return this.points;
     }
     addPoints(points) {
-        this.getContract(web3.eth.accounts[0]);
-        this.contract.addPoints(points,{from: web3.eth.accounts[0]}); //({from: web3.eth.accounts[0], to:web3.eth.accounts[1],gas: 10000000 }, function(err, res) {;});
+        this.getContract(this.account);
+        this.contract.addPoints(points,this.getAccount()); //({from: web3.eth.accounts[0], to:web3.eth.accounts[1],gas: 10000000 }, function(err, res) {;});
         this.points += points;
         return this.points;
     }
     resetScore() { 
-        this.getContract(web3.eth.accounts[0]);
-        this.contract.resetScore({from: web3.eth.accounts[0]});// ({from: web3.eth.accounts[0], to:web3.eth.accounts[1],gas: 10000000 }, function(err, res) {;});
+        this.getContract(this.account);
+        this.contract.resetScore(this.getAccount());// ({from: web3.eth.accounts[0], to:web3.eth.accounts[1],gas: 10000000 }, function(err, res) {;});
         this.points += 0;
         return this.points;
     }
     createAccount(){
         return web3.eth.accounts[0];
     }
-    
+    setAccount(account){
+        this.account = account;
+    }
     deployContract(){
         var playerscoreContract = web3.eth.contract([{"constant":false,"inputs":[],"name":"resetScore","outputs":[],"payable":false,"stateMutability":"nonpayable","type":"function"},{"constant":false,"inputs":[{"name":"points","type":"int256"}],"name":"addPoints","outputs":[],"payable":false,"stateMutability":"nonpayable","type":"function"},{"constant":true,"inputs":[],"name":"getPoints","outputs":[{"name":"","type":"int256"}],"payable":false,"stateMutability":"view","type":"function"}]);
 var playerscore = playerscoreContract.new(
@@ -60,7 +68,9 @@ var playerscore = playerscoreContract.new(
         //             console.log('Contract mined! address: ' + contract.address + ' transactionHash: ' + contract.transactionHash);
         //         }
         //     })
-    this.contract =  playerscoreContract.at('0x1D5d4889B7bBF9882Df9314D9Bfd280E7c4ba65C');
+    this.contract =  playerscoreContract.at('0x0D8A4BB9b25252Cc91F05d8AFDf63b240fEb8075');
+    //this.contract =  playerscoreContract.at('0x7C25C3100Fc3DE3D63cac0aEdfbED99AAe36e557'); //0x7C25C3100Fc3DE3D63cac0aEdfbED99AAe36e557
+    return this.contract;
     }
 }
 

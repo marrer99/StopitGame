@@ -17,16 +17,15 @@
 <body>
     <div id="EtherData">
         Contract:<input id="contract" style="width:275px" value="12001240120120412041204"/> 
-        <input id="btnDeploy" type="button" value="Deploy" onclick="getContract()"/>
+        <input id="btnShow" type="button" value="Show" onclick="getContract()"/>
         <br/>
-        <b>Accounts</b><select id='accounts'></select>
-     <!-- <label id='points'></label> -->
+        <b>Accounts</b><select id='accounts' onchange="getPoints()"></select>
     </div>
     <div id='canvas'></div>
 <script>
 function getContract (e) {
         var url = '/DeployContract';
-        result = loadJSON(url ,{},"json",function(contractData) { document.getElementById('contract').value = contractData.contractAddress;} ,function(jsresponse) {console.log("error : " + jsresponse)});
+        result = loadJSON(url ,{},"json",function(contractData) { document.getElementById('contract').value = contractData.contractAddress;document.getElementById('canvas').focus();} ,function(jsresponse) {console.log("error : " + jsresponse)});
     }   
 </script>
 </body>
