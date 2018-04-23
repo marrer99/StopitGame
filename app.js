@@ -19,14 +19,7 @@ app.get('/', function(request, response) {
 })
 
 app.get('/points', function(request, response) {
-  // account = request.query.account;
-  // ether = new Ether(account);
-  // points = Number(request.query.points);
-  // ether.addPoints(points);
-  // console.log(ether.getPoints());
-  // response.send('{"TotalPoints": ' + ether.getPoints() + '}');
   console.log(request);
-  //var t = new Test('asd'); 
   var account = request.query.account;
   console.log(account);
   var ether = new Ether(account);
@@ -38,13 +31,6 @@ app.get('/points', function(request, response) {
 })
 
 app.get('/resetPoints', function(request, response) {
-  // account = request.query.account;
-  // ether = new Ether(account);
-  // ether.resetScore();
-  // this.points = 0;
-  // this.points = ether.getPoints();
-  // console.log(this.points);
-  // response.send('{"TotalPoints": ' + this.points + '}');
   var account = request.query.account;
   var ether = new Ether(account);
   ether.resetScore();
